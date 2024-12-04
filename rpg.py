@@ -2,12 +2,13 @@ import random
 import os
 import time
 
-names = ["Glorb", "Bintos", "Kolasimo", "Paurtil", "Kaloslav", "Jondes", "Giemothus", "Comitus", "Hárs", "Ganickin"]
+names = ["Glorb", "Bintos", "Kolasimo", "Paurtil"]
 
 act = ""
 
 user_max_hp = random.randint(80, 120)
 user_atk = random.randint(7, 12)
+user_luck = random.randint(1, 7)
 
 user_alive = True
 
@@ -20,12 +21,10 @@ wave = 0
 while user_alive == True:
     os.system("cls")
 
-    user_luck = random.randint(1, 7)
-
     enemy_alive = True
 
     enemy_max_hp = random.randint((40 + (2 * wave)), (80 + (2 * wave)))
-    enemy_def_atk = random.randint((2 + wave), (5 + wave))
+    enemy_def_atk = random.randint((3 + (2 * wave)), (7 + (2 * wave)))
     enemy_name = random.choice(names)
 
     enemy_hp = enemy_max_hp
@@ -102,8 +101,6 @@ while user_alive == True:
 
         if enemy_hp <= 0:
             enemy_alive = False
-            user_atk += 1
-            user_hp += random.randint(10, 20)
             kills += 1
             wave += 1
             time.sleep(1)
@@ -116,7 +113,7 @@ while user_alive == True:
 
         time.sleep(1)
         print(f"\n{enemy_name} támad!")
-        miss = random.randint(1, 5)
+        miss = random.randint(1, 10)
         crit = random.randint(1, 6)
         if miss <= (user_luck / 2):
             time.sleep(1)
