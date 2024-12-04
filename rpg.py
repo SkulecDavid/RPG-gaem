@@ -2,12 +2,12 @@ import random
 import os
 import time
 
-names = ["Glorb", "Bintos", "Kolasimo", "Paurtil", "Kaloslav", "Jondes", "Giemothus", "Comitus", "Hárs", "Ganickin"]
+names = ["Glorb", "Bintos", "Kolasimo", "Paurtil", "Kaloslav", "Jondes", "Giemothus", "Comitus", "Hárs", "Ganickin", "Putillion", "Gerius", "Barnabion"]
 
 act = ""
 
 user_max_hp = random.randint(80, 120)
-user_atk = random.randint(7, 12)
+user_atk = random.randint(8, 12)
 
 user_alive = True
 
@@ -20,12 +20,12 @@ wave = 0
 while user_alive == True:
     os.system("cls")
 
-    user_luck = random.randint(1, 7)
+    user_luck = random.randint(1, 70)
 
     enemy_alive = True
 
-    enemy_max_hp = random.randint((40 + (2 * wave)), (80 + (2 * wave)))
-    enemy_def_atk = random.randint((2 + wave), (5 + wave))
+    enemy_max_hp = int(random.randrange((30 + (2 * wave)), (60 + (2 * wave))))
+    enemy_def_atk = int(random.randrange((2 + wave/4), (4 + wave/4)))
     enemy_name = random.choice(names)
 
     enemy_hp = enemy_max_hp
@@ -45,15 +45,15 @@ while user_alive == True:
         time.sleep(1)
 
         while True:
-            act = (input("Mit teszel?\n1 - Támadás\n2 - Gyógyítás\n3 - Menekülés\n"))
+            act = (input("Mit teszel?\n1 - Támadás\n2 - Védekezés\n3 - Menekülés\n"))
             if act == "1":
-                crit = random.randint(1, 6)
-                miss = random.randint(1, 10)
-                if miss == user_luck:
+                crit = random.randint(1, 100)
+                miss = random.randint(1, 20)
+                if miss == 20:
                     time.sleep(1)
                     print("Nem talált")
                     break
-                elif crit == 6:
+                elif crit <= user_luck:
                     user_damage = ((user_atk + random.randint(-2, 2)) * 2)
                     enemy_hp -= user_damage
                     time.sleep(1)
