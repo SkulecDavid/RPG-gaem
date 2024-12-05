@@ -2,7 +2,7 @@ import random
 import os
 import time
 
-names = ["Glorb", "Bintos", "Kolasimo", "Paurtil", "Kaloslav", "Jondes", "Giemothus", "Comitus", "Hárs", "Ganickin", "Putillion", "Gerius", "Barnabion"]
+names = ["Glorb", "Bintos", "Kolasimo", "Paurtil", "Kaloslav", "Jondes", "Giemothus", "Comitus", "Hárs", "Ganickin", "Putillion", "Gerius", "Barnabion", "Greg"]
 
 act = ""
 
@@ -25,16 +25,20 @@ while user_alive == True:
     os.system("cls")
 
     if wave % 5 == 0:
-            user_atk += (wave/5)
+            user_atk += int((wave/5))
             user_max_hp += wave
             print(f"Gratulálok, elérted a {wave}. kört!")
             time.sleep(1)
-            print(f"\nÚj maximum életerő: {user_max_hp}\nÚj támadási erő: {user_atk}")
+            print(f"\nÚj maximum életerő: {user_max_hp}\nÚj támadási erő: {user_atk-2}-{user_atk+2}")
             time.sleep(1)
             input("\nNyomj ENTER-t a továbblépéshez!")
     
     if user_hp > user_max_hp:
         user_hp = user_max_hp
+
+    user_hp = round(user_hp)
+    user_max_hp = round(user_max_hp)
+    user_atk = round(user_atk)
 
     os.system("cls")
 
@@ -71,7 +75,7 @@ while user_alive == True:
                     time.sleep(1)
                     print("Nem talált")
                     break
-                elif crit <= user_luck:
+                elif crit <= (user_luck/5):
                     user_damage = ((user_atk + random.randint(-2, 2)) * 2)
                     enemy_hp -= user_damage
                     time.sleep(1)
@@ -144,12 +148,14 @@ while user_alive == True:
                 if crit == 20:
                     enemy_damage = round(((enemy_atk + random.randint(-1, 1)) * 2))
                     enemy_hp -= enemy_damage
+                    enemy_hp = round(enemy_hp)
                     time.sleep(1)
                     print("\nKRITIKUS PARRY!")
                     print(f"\n{enemy_name} támadását visszafordítottad, így {enemy_damage}-t sebződött")
                 else:
                     enemy_damage = round((enemy_atk + random.randint(-1, 1)))
                     enemy_hp -= (enemy_damage/2)
+                    enemy_hp = round(enemy_hp)
                     time.sleep(1)
                     print("\nPARRY!")
                     print(f"\n{enemy_name} támadását visszafordítottad, így {enemy_damage}-t sebződött")
