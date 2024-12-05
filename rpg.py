@@ -73,7 +73,7 @@ while user_alive == True:
                 miss = random.randint(1, 20)
                 if miss == 20:
                     time.sleep(1)
-                    print("Nem talált")
+                    print("\nNem talált")
                     break
                 elif crit <= (user_luck/5):
                     user_damage = ((user_atk + random.randint(-2, 2)) * 2)
@@ -106,7 +106,7 @@ while user_alive == True:
                     print("\nNem sikerült elmenekülni")
                     break
             else:
-                print("\nNincs ilyen lehetőség")
+                print("\nNincs ilyen lehetőség\n")
                 time.sleep(1)
 
         if run <= user_luck and escape == True:
