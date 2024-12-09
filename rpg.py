@@ -1,3 +1,28 @@
+def rank(rank: str):
+    print("\n", end="")
+    for letter in "Rangod: ":
+        print(letter, end="")
+        time.sleep(0.2)
+    time.sleep(1)
+    print(f"--- {rank} ---")
+    time.sleep(2)
+
+def judge(dialouge: str, sec: int):
+    print("\n", end="")
+    for letter in dialouge:
+        print(letter, end="")
+        time.sleep(0.05)
+    print("")
+    time.sleep(sec)
+
+def angry(dialouge: str, sec: int):
+    print("\n", end="")
+    for letter in dialouge:
+        print(letter, end="")
+        time.sleep(0.3)
+    print("")
+    time.sleep(sec)
+
 import random
 import os
 import time
@@ -20,6 +45,9 @@ wave = 1
 parry = False
 blocked = False
 escape = False
+
+suicide = False
+cheat = False
 
 os.system("cls")
 
@@ -148,6 +176,29 @@ ______ _       _     _
                     time.sleep(1)
                     print("\nNem sikerült elmenekülni")
                     break
+            elif act == "killself":
+                user_hp = 0
+                suicide = True
+                break
+            elif act == "uwu":
+                print("\nDEVMODE ON\n")
+                wave = int(input("wave >>> "))
+                kills = int(input("kills >>> "))
+                if input("kill enemy? (y/n) >>> ") == "y":
+                    enemy_hp -= 999
+                if input("kill self? (y/n) >>> ") == "y":
+                    user_hp -= 999
+                break
+            elif act == "kill":
+                enemy_hp = 0
+                cheat = True
+                break
+            elif act == "cheat":
+                print("\nCHEATS ACTIVATED")
+                wave = int(input("wave >>> "))
+                kills = int(input("kills >>> "))
+                cheat = True
+                break
             else:
                 print("\nNincs ilyen lehetőség\n")
                 time.sleep(1)
@@ -231,7 +282,6 @@ ______ _       _     _
         if user_hp <= 0:
             user_alive = False
             time.sleep(1)
-            print(f"\nMeghaltál!\nÖléseid száma: {kills}\nKöreid száma: {wave}")
             print("""
 
 ---------------------------------------
@@ -243,9 +293,101 @@ __   __           ______ _          _
   \_/\___/ \__,_| |___/ |_|\___|\__,_|
 ---------------------------------------
             """)
-            break
+            print(f"\nMeghaltál!\nÖléseid száma: {kills}\nNyert köreid száma: {wave-1}")
+            time.sleep(1)
+            if suicide == True:
+                rank("Öngyilkos")
+                judge("Oh, erre nem számítottam...", 2)
+                angry("Miért?", 2)
 
-        time.sleep(1)
+            elif cheat == True:
+                rank("Mocskos csaló")
+                judge("Ha ezt olvasod, akkor szégyelld magad", 1)
+                angry("Tünés a szemem elől...", 1)
+
+            elif kills == 0:
+                if wave == 1:
+                    rank("Abszolút vesztes")
+                    angry("...", 2)
+                    judge("Komolyan? Még egy körnél sem voltál képes továbbjutni?", 1)
+                    judge("Csalódtam benned... Többet ne is lássalak!", 1)
+
+                elif wave < 20:
+                    rank("Ijedős nyúl")
+                    judge("Nem öltél meg senkit, csak folyamatosan menekültél...", 1)
+                    judge("Hát, ez a te döntésed volt, nem is jutottál túl messzire", 1)
+                    judge("Legközelebb lehetnél egy kicsit keményebb, csak egy kis jótanács", 1)
+                    judge("Most tünés! Szedd a lábaidat kisnyuszi!", 1)
+
+                else:
+                    rank("Igazi pacifista")
+                    judge("Nem öltél meg senkit, és sokáig is jutottál", 1)
+                    judge("Te aztán tényleg elkötelezett vagy", 2)
+                    judge("Hé, legalább nem írtottad ki az egész népességet! Ezért büszke lehetsz magadra", 1)
+                    judge("Adieu! Remélem még találkozunk", 1)
+
+            elif kills == wave-1:
+                if kills <= 10:
+                    rank("Gyilkos növendék")
+                    judge("Rossz úton jársz kölyök", 1)
+                    judge("Ha így folytatod, rengetegen fognak szenvedni csak miattad", 1)
+                    judge("Ajánlom, hogy megváltozzál mire újra találkozunk...", 1)
+
+                else:
+                    rank("Vérbeli gyilkos")
+                    judge("Megöltél mindenkit aki az utadba állt...", 2)
+                    angry("...", 2)
+                    act = input("\nBüszke vagy magadra? (igen / nem)\n>>> ")
+                    time.sleep(2)
+                    if act.lower() == "igen":
+                        judge("Hm...", 2)
+                        judge("Legalább őszinte vagy magaddal", 1)
+                        angry("Te szívtelen szörny", 1)
+                    elif act.lower() == "nem":
+                        judge("Aha, persze", 1)
+                        judge("Engem nem csapsz be!", 1)
+                    else:
+                        judge("Mindegy mit mondasz", 1)
+                        judge("Most már nem számít", 1)
+                    judge("Most távozz!", 1)
+
+            elif wave < 5:
+                rank("Gyenge harcos")
+                judge("Nem jutottál túl messzire, de ez nem jelenti, hogy nincs benned potenciál", 1)
+                judge("Gyerünk, állj fel, és próbáld újra!", 1)
+                judge("Legközelebb majd jobban sikerül", 1)
+            
+            elif wave < 10:
+                rank("Közepes katona")
+                judge("Viszonylag messzire eljutottál, ez dicséretes", 1)
+                judge("Tudom, hogy te jobbat tudsz ennél, próbálkozz meg mégegyszer", 1)
+
+            elif wave < 15:
+                rank("Átlagos kardforgató")
+                judge("Két alkalomma fejlődtél a kalandod során", 1)
+                judge("Körülbelül eddig jut el egy átlagos ember ha nem menekül állandóan", 1)
+                judge("Legközelebb majd jobban sikerül, addig is a viszontlátásra!", 1)
+
+            elif wave < 25:
+                rank("Tapasztalt túlélő")
+                judge("Gratulálok, nem sokan jutottak el ilyen sokáig!", 1)
+                judge("Büszke lehetsz magadra, én az vagyok", 1)
+                judge("Remélem még találkozunk, Mester", 1)
+            
+            elif wave >= 25:
+                rank("Valóságos legenda")
+                judge("Minden tiszteletem!", 1)
+                judge("Soha senki nem jutott el olyan messzire, mint te", 1)
+                judge("És a megérdemelt jutalmad...", 3)
+                angry("Cheat Kódok!", 1)
+                judge("A cheat kódok: cheat, kill, killself", 1)
+                judge("Használd egészséggel ;)", 1)
+
+            else:
+                rank("ERROR")
+                judge("Upsz, valami nem oké", 1)
+                judge("Bocsi a kellemetlenségért!", 1)
+            break
         input("\nNyomj ENTER-t a továbblépéshez!")
 
-input()
+input("\n\n\n\nNyomj ENTER-t a kilépéshez!")
