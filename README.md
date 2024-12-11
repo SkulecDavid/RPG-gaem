@@ -1,4 +1,4 @@
-Terminálban nem működik ugyanúgy, mint VScode-ban \n
-Bizonyos szövegek kiíratása más \n
-\n
+Terminálban nem működik ugyanúgy, mint VScode-ban
+Bizonyos szövegek kiíratása más
+
 https://github.com/SkulecDavid/RPG-gaem
