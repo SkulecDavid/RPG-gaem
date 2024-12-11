@@ -23,6 +23,14 @@ def angry(dialouge: str, sec: int):
     print("")
     time.sleep(sec)
 
+def title(title: str, sec: int):
+    print("\n", end="")
+    for letter in title:
+        print(letter, end="")
+        time.sleep(0.005)
+    print("")
+    time.sleep(sec)
+
 import random
 import os
 import time
@@ -51,7 +59,7 @@ cheat = False
 
 os.system("cls")
 
-print("""
+title("""
 
     ____  ____  ______                               
    / __ \/ __ \/ ____/     ____ _____ ____  ____ _____ 
@@ -62,7 +70,7 @@ print("""
 
            a generic rpg game by: Skuli
 
-""")
+""", 1)
 input("\nNyomj ENTER-t!")
 
 while user_alive == True:
@@ -71,8 +79,7 @@ while user_alive == True:
     if wave % 5 == 0:
             user_atk += int((wave/5))
             user_max_hp += wave
-            print("""
----------------------------------------
+            title("""
  _                    _   _   _       
 | |                  | | | | | |      
 | |     _____   _____| | | | | |_ __  
@@ -80,10 +87,8 @@ while user_alive == True:
 | |___|  __/\ V /  __/ | | |_| | |_) |
 \_____/\___| \_/ \___|_|  \___/| .__/ 
                                | |    
-                               |_|   
----------------------------------------
-
-            """)
+                               |_|   \n
+            """, 1)
             print(f"Gratulálok, elérted a {wave}. kört!")
             time.sleep(1)
             print(f"\nÚj maximum életerő: {user_max_hp}\nÚj támadási erő: {user_atk-2}-{user_atk+2}")
@@ -113,8 +118,7 @@ while user_alive == True:
     while enemy_alive == True:
         os.system("cls")
 
-        print("""
---------------------------
+        title("""
 ______ _       _     _   
 |  ___(_)     | |   | |  
 | |_   _  __ _| |__ | |_ 
@@ -122,10 +126,8 @@ ______ _       _     _
 | |   | | (_| | | | | |_ 
 \_|   |_|\__, |_| |_|\__|
           __/ |          
-         |___/  
---------------------------
-
-        """)
+         |___/  \n
+        """, 1)
 
         print(f"{wave}. kör\n")
 
@@ -184,6 +186,10 @@ ______ _       _     _
                 print("\nDEVMODE ON\n")
                 wave = int(input("wave >>> "))
                 kills = int(input("kills >>> "))
+                user_max_hp = int(input("hp >>> "))
+                user_hp = user_max_hp
+                user_atk = int(input("atk >>> "))
+                user_luck = int(input("luck >>> "))
                 if input("kill enemy? (y/n) >>> ") == "y":
                     enemy_hp -= 999
                 if input("kill self? (y/n) >>> ") == "y":
@@ -282,17 +288,14 @@ ______ _       _     _
         if user_hp <= 0:
             user_alive = False
             time.sleep(1)
-            print("""
-
----------------------------------------
+            title("""
 __   __           ______ _          _ 
 \ \ / /           |  _  (_)        | |
  \ V /___  _   _  | | | |_  ___  __| |
   \ // _ \| | | | | | | | |/ _ \/ _` |
   | | (_) | |_| | | |/ /| |  __/ (_| |
-  \_/\___/ \__,_| |___/ |_|\___|\__,_|
----------------------------------------
-            """)
+  \_/\___/ \__,_| |___/ |_|\___|\__,_|\n
+            """, 1)
             print(f"\nMeghaltál!\nÖléseid száma: {kills}\nNyert köreid száma: {wave-1}")
             time.sleep(1)
             if suicide == True:

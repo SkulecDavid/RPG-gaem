@@ -1,4 +1,2 @@
-# RPG-gaem
-Some type of turn based rpg fighting game
-
-I'll find a name later...
+Terminálban nem működik ugyanúgy, mint VScode-ban
+Bizonyos szövegek kiíratása más
